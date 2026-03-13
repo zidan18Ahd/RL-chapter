@@ -2,7 +2,7 @@
 
 ## 🔴 What is Reinforcement Learning?
 
-**Reinforcement Learning (RL)** is a machine learning paradigm where an **agent learns optimal behavior by interacting with an environment to maximize cumulative reward.**
+Reinforcement Learning (RL) is a machine learning paradigm where an **agent learns optimal behavior by interacting with an environment to maximize cumulative reward.**
 
 Unlike supervised learning:
 
@@ -14,165 +14,136 @@ Unlike supervised learning:
 
 ## 🔴 RL Interaction Framework
 
-At time step ( t ):
+At time step `t`:
 
-* Agent observes state ( s_t )
-* Takes action ( a_t )
-* Receives reward ( r_t )
-* Moves to next state ( s_{t+1} )
+* Agent observes state `s_t`
+* Takes action `a_t`
+* Receives reward `r_t`
+* Moves to next state `s_{t+1}`
 
-This forms the loop:
+Interaction loop:
 
-[
-s_t \rightarrow a_t \rightarrow r_t \rightarrow s_{t+1}
-]
+```
+s_t → a_t → r_t → s_{t+1}
+```
 
 ---
 
 ## 🔴 Objective of RL
 
-The goal is to maximize **expected cumulative reward (Return):**
+Return:
 
-[
-G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \dots
-]
+```
+G_t = r_t + γ r_{t+1} + γ² r_{t+2} + ...
+```
 
 Where:
 
-* ( G_t ) → Return
-* ( \gamma ) → Discount factor
+* `G_t` = Total future reward
+* `γ` = Discount factor
 
 ---
 
 ## 🔴 Discount Factor
 
-[
-0 \le \gamma \le 1
-]
+```
+0 ≤ γ ≤ 1
+```
 
-* ( \gamma = 0 ) → Only immediate reward matters
-* ( \gamma \approx 1 ) → Future rewards matter
+* γ = 0 → Only immediate reward matters
+* γ → 1 → Future rewards matter
 
 ---
 
-## 🔴 Core Terminology
+## 🔴 Core Components
 
-### 🟢 Agent
-
-Decision maker (robot, AI model, player)
-
-### 🟢 Environment
-
-External system with which agent interacts
-
-### 🟢 State ( s )
-
-Current situation of the agent
-
-### 🟢 Action ( a )
-
-Decision taken by agent
-
-### 🟢 Reward ( r )
-
-Feedback signal from environment
+**Agent** → Decision maker
+**Environment** → External system
+**State (s)** → Current situation
+**Action (a)** → Decision taken
+**Reward (r)** → Feedback signal
 
 ---
 
 ## 🔴 Policy
 
-Policy defines agent behaviour:
-
-[
-\pi(a|s) = P(a_t = a \mid s_t = s)
-]
+```
+π(a | s) = Probability of taking action a in state s
+```
 
 Types:
 
-* Deterministic policy
-* Stochastic policy
+* Deterministic
+* Stochastic
 
 ---
 
 ## 🔴 Value Function
 
-Expected future reward from state ( s ):
+```
+V^π(s) = Expected return starting from state s
+```
 
-[
-V^\pi(s) = \mathbb{E}[G_t \mid s_t = s]
-]
+Meaning: How good it is to be in state `s`.
 
 ---
 
-## 🔴 Action-Value Function (Q Function)
+## 🔴 Action Value Function (Q Function)
 
-[
-Q^\pi(s,a) = \mathbb{E}[G_t \mid s_t = s, a_t = a]
-]
+```
+Q^π(s, a) = Expected return if action a is taken in state s
+```
 
-Meaning:
-
-Expected reward if we take action ( a ) in state ( s )
+Meaning: How good action `a` is in state `s`.
 
 ---
 
 ## 🔴 Exploration vs Exploitation
 
-### Exploration
+**Exploration** → Try new actions
+**Exploitation** → Use best known action
 
-Trying new actions to gain knowledge
-
-### Exploitation
-
-Using known best action
-
-Balanced strategy is essential.
+Balanced strategy is important.
 
 ---
 
 ## 🔴 Markov Property
 
-RL assumes:
+```
+P(s_{t+1} | s_t, history) = P(s_{t+1} | s_t)
+```
 
-[
-P(s_{t+1} \mid s_t, s_{t-1}, \dots) = P(s_{t+1} \mid s_t)
-]
-
-Meaning:
-
-Future depends only on present state.
+Meaning: Future depends only on present state.
 
 ---
 
 ## 🔴 Markov Decision Process (MDP)
 
-RL problems are modeled as:
-
-[
-(S, A, P, R, \gamma)
-]
+```
+(S, A, P, R, γ)
+```
 
 Where:
 
-* ( S ) → State space
-* ( A ) → Action space
-* ( P ) → Transition probability
-* ( R ) → Reward function
-* ( \gamma ) → Discount factor
+* S → State space
+* A → Action space
+* P → Transition probability
+* R → Reward function
+* γ → Discount factor
 
 ---
 
 ## 🔴 Types of RL Tasks
 
-### Episodic Tasks
+**Episodic Tasks**
 
-Have terminal state
-Examples: games, maze solving
+* Have terminal state
+* Example: Games, Maze
 
-### Continuing Tasks
+**Continuing Tasks**
 
-No terminal state
-Examples: stock trading, robot control
+* No terminal state
+* Example: Trading, Robot control
 
 ---
 
@@ -182,21 +153,19 @@ Robot navigation:
 
 * State → Robot position
 * Action → Move direction
-* Reward → +10 (goal), −1 (wall)
+* Reward → +10 goal, −1 wall
 
-Objective:
-
-Learn shortest path.
+Goal: Learn shortest path.
 
 ---
 
 ## 🔴 RL vs Other Machine Learning
 
-| Learning Type | Data          | Goal            |
-| ------------- | ------------- | --------------- |
-| Supervised    | Labeled       | Predict output  |
-| Unsupervised  | No labels     | Find structure  |
-| Reinforcement | Reward signal | Maximize return |
+| Learning Type | Data          | Goal              |
+| ------------- | ------------- | ----------------- |
+| Supervised    | Labeled       | Prediction        |
+| Unsupervised  | No labels     | Pattern discovery |
+| Reinforcement | Reward signal | Maximize return   |
 
 ---
 
@@ -205,31 +174,31 @@ Learn shortest path.
 * Sequential decision making
 * Delayed reward
 * Trial-and-error learning
-* Goal-oriented
+* Goal-oriented learning
 * Environment interaction
 
 ---
 
 ## 🔴 Important Exam Questions
 
-### ⭐ 2 Mark
+### ⭐ 2 Marks
 
 * Define reinforcement learning
 * What is policy?
 * Define reward
 * Define return
-* What is discount factor
+* What is discount factor?
 * Define value function
 * Define MDP
 
-### ⭐ 5 Mark
+### ⭐ 5 Marks
 
 * Explain RL interaction loop
 * Exploration vs exploitation
 * Episodic vs continuing tasks
 * RL vs supervised learning
 
-### ⭐ 10 Mark
+### ⭐ 10 Marks
 
 * Explain Markov Decision Process
 * Derive return equation
@@ -243,6 +212,6 @@ Learn shortest path.
 * Game AI
 * Recommendation systems
 * Autonomous driving
-* LLM reasoning optimization
+* LLM optimization
 
 ---
